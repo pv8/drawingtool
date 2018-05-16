@@ -79,11 +79,23 @@ Create a `input.txt` file with the drawing instructions:
     $ git clone https://github.com/pv8/drawingtool
     $ cd drawingtool
     $ pip install .
-    $ drawingtool ~/input.txt
+    $ drawingtool --input ~/input.txt
 
 *Note*: It's recommended to install inside a virtualenv_.
 
 The result will be written in a `output.txt` file.
+
+It's also possible to output the results to `stdout`:
+
+.. code-block:: bash
+
+    $ drawingtool --input ~/input.txt --stdout
+
+To see all options:
+
+.. code-block:: bash
+
+    $ drawingtool --help
 
 
 With Docker
