@@ -57,3 +57,35 @@ def test_draw_rectangle(base_canvas):
     )
     base_canvas.draw_rectangle(16, 1, 20, 3)
     assert str(base_canvas) == expected_str
+
+
+def test_try_draw_line_outside_canvas(base_canvas):
+    expected_str = (
+        '----------------------\n'
+        '|                    |\n'
+        '|                    |\n'
+        '|                    |\n'
+        '|                    |\n'
+        '----------------------'
+    )
+    base_canvas.draw_line(1, 2, 21, 2)  # vertical line
+    assert str(base_canvas) == expected_str
+    base_canvas.draw_line(6, 3, 6, 5)  # horizontal line
+    assert str(base_canvas) == expected_str
+
+
+def test_try_draw_rectangle_outside_canvas(base_canvas):
+    expected_str = (
+        '----------------------\n'
+        '|                    |\n'
+        '|                    |\n'
+        '|                    |\n'
+        '|                    |\n'
+        '----------------------'
+    )
+    base_canvas.draw_rectangle(16, 1, 20, 6)
+    assert str(base_canvas) == expected_str
+    base_canvas.draw_rectangle(16, 1, 21, 3)
+    assert str(base_canvas) == expected_str
+    base_canvas.draw_rectangle(16, 1, 21, 6)
+    assert str(base_canvas) == expected_str
