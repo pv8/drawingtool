@@ -106,3 +106,32 @@ def test_bucket_fill(base_canvas):
 
     base_canvas.bucket_fill(10, 3, colour='o')
     assert str(base_canvas) == expected_str
+
+
+def test_change_fill_colour(base_canvas):
+    expected_str = (
+        '----------------------\n'
+        '|oooooooooooooooxxxxx|\n'
+        '|xxxxxxooooooooox   x|\n'
+        '|     xoooooooooxxxxx|\n'
+        '|     xoooooooooooooo|\n'
+        '----------------------'
+    )
+    base_canvas.draw_line(1, 2, 6, 2)
+    base_canvas.draw_line(6, 3, 6, 4)
+    base_canvas.draw_rectangle(16, 1, 20, 3)
+
+    base_canvas.bucket_fill(10, 3, colour='o')
+    assert str(base_canvas) == expected_str
+
+    expected_str = (
+        '----------------------\n'
+        '|...............xxxxx|\n'
+        '|xxxxxx.........x   x|\n'
+        '|     x.........xxxxx|\n'
+        '|     x..............|\n'
+        '----------------------'
+    )
+    # change colour to '.'
+    base_canvas.bucket_fill(10, 3, colour='.')
+    assert str(base_canvas) == expected_str
