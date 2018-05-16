@@ -125,4 +125,3 @@ def test_cli_invalid_input():
     with mock.patch('drawingtool.cli.sys.stdout', new_callable=MockStdout) as mock_stdout:
         cli.run_tool(invalid_input_file.name)
         assert mock_stdout.getvalue() == expected_output
-
