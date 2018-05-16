@@ -1,7 +1,14 @@
+import pytest
+
 from drawingtool.canvas import Canvas
 
 
-def test_canvas_str():
+@pytest.fixture(scope='function')
+def base_canvas():
+    return Canvas(width=20, height=4)
+
+
+def test_canvas_str(base_canvas):
     expected_str = (
         '----------------------\n'
         '|                    |\n'
@@ -10,11 +17,10 @@ def test_canvas_str():
         '|                    |\n'
         '----------------------'
     )
-    canvas = Canvas(width=20, height=4)
-    assert str(canvas) == expected_str
+    assert str(base_canvas) == expected_str
 
 
-def test_draw_horizontal_line():
+def test_draw_horizontal_line(base_canvas):
     expected_str = (
         '----------------------\n'
         '|                    |\n'
@@ -23,12 +29,11 @@ def test_draw_horizontal_line():
         '|                    |\n'
         '----------------------'
     )
-    canvas = Canvas(width=20, height=4)
-    canvas.draw_line(1, 2, 6, 2)
-    assert str(canvas) == expected_str
+    base_canvas.draw_line(1, 2, 6, 2)
+    assert str(base_canvas) == expected_str
 
 
-def test_draw_vertical_line():
+def test_draw_vertical_line(base_canvas):
     expected_str = (
         '----------------------\n'
         '|                    |\n'
@@ -37,12 +42,11 @@ def test_draw_vertical_line():
         '|     x              |\n'
         '----------------------'
     )
-    canvas = Canvas(width=20, height=4)
-    canvas.draw_line(6, 3, 6, 4)
-    assert str(canvas) == expected_str
+    base_canvas.draw_line(6, 3, 6, 4)
+    assert str(base_canvas) == expected_str
 
 
-def test_draw_rectangle():
+def test_draw_rectangle(base_canvas):
     expected_str = (
         '----------------------\n'
         '|               xxxxx|\n'
@@ -51,6 +55,5 @@ def test_draw_rectangle():
         '|                    |\n'
         '----------------------'
     )
-    canvas = Canvas(width=20, height=4)
-    canvas.draw_rectangle(16, 1, 20, 3)
-    assert str(canvas) == expected_str
+    base_canvas.draw_rectangle(16, 1, 20, 3)
+    assert str(base_canvas) == expected_str
