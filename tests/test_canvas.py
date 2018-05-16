@@ -40,3 +40,17 @@ def test_draw_vertical_line():
     canvas = Canvas(width=20, height=4)
     canvas.draw_line(6, 3, 6, 4)
     assert str(canvas) == expected_str
+
+
+def test_draw_rectangle():
+    expected_str = (
+        '----------------------\n'
+        '|               xxxxx|\n'
+        '|               x   x|\n'
+        '|               xxxxx|\n'
+        '|                    |\n'
+        '----------------------'
+    )
+    canvas = Canvas(width=20, height=4)
+    canvas.draw_rectangle(16, 1, 20, 3)
+    assert str(canvas) == expected_str

@@ -17,6 +17,12 @@ class Canvas(object):
             for i in range(x1 - 1, x2):
                 self._area[y1 - 1][i] = 'x'
 
+    def draw_rectangle(self, x1, y1, x2, y2):
+        self.draw_line(x1, y1, x1, y2)
+        self.draw_line(x1, y1, x2, y1)
+        self.draw_line(x2, y1, x2, y2)
+        self.draw_line(x1, y2, x2, y2)
+
     def __str__(self):
         canvas_str = '-' * (self.width + 2) + '\n'
         for line in self._area:
