@@ -89,3 +89,20 @@ def test_try_draw_rectangle_outside_canvas(base_canvas):
     assert str(base_canvas) == expected_str
     base_canvas.draw_rectangle(16, 1, 21, 6)
     assert str(base_canvas) == expected_str
+
+
+def test_bucket_fill(base_canvas):
+    expected_str = (
+        '----------------------\n'
+        '|oooooooooooooooxxxxx|\n'
+        '|xxxxxxooooooooox   x|\n'
+        '|     xoooooooooxxxxx|\n'
+        '|     xoooooooooooooo|\n'
+        '----------------------'
+    )
+    base_canvas.draw_line(1, 2, 6, 2)
+    base_canvas.draw_line(6, 3, 6, 4)
+    base_canvas.draw_rectangle(16, 1, 20, 3)
+
+    base_canvas.bucket_fill(10, 3, colour='o')
+    assert str(base_canvas) == expected_str

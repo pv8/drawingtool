@@ -28,6 +28,17 @@ class Canvas(object):
             self.draw_line(x2, y1, x2, y2)
             self.draw_line(x1, y2, x2, y2)
 
+    def bucket_fill(self, x, y, colour):
+        if self._inside_canvas(x, y):
+            if self._area[y - 1][x - 1] not in ['x', colour]:
+                self._area[y - 1][x - 1] = colour
+
+                # recursively apply colour on surrounding points
+                self.bucket_fill(x, y + 1, colour)
+                self.bucket_fill(x + 1, y, colour)
+                self.bucket_fill(x, y - 1, colour)
+                self.bucket_fill(x - 1, y, colour)
+
     def __str__(self):
         canvas_str = '-' * (self.width + 2) + '\n'
         for line in self._area:
