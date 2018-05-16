@@ -181,3 +181,46 @@ def test_blank_canvas_with_bucket_fill(base_canvas):
     base_canvas.bucket_fill(6, 3, colour=' ')  # blank lines
     base_canvas.bucket_fill(16, 1, colour=' ')  # blank rectangle
     assert str(base_canvas) == expected_str
+
+
+def test_draw_line_with_custom_colour(base_canvas):
+    expected_str = (
+        '----------------------\n'
+        '|                    |\n'
+        '|++++++              |\n'
+        '|                    |\n'
+        '|                    |\n'
+        '----------------------'
+    )
+    base_canvas.draw_line(1, 2, 6, 2, colour='+')
+    assert str(base_canvas) == expected_str
+
+
+def test_draw_rectangle_with_custom_colour(base_canvas):
+    expected_str = (
+        '----------------------\n'
+        '|               +++++|\n'
+        '|               +   +|\n'
+        '|               +++++|\n'
+        '|                    |\n'
+        '----------------------'
+    )
+    base_canvas.draw_rectangle(16, 1, 20, 3, colour='+')
+    assert str(base_canvas) == expected_str
+
+
+def test_try_bucket_fill_with_nothing(base_canvas):
+    expected_str = (
+        '----------------------\n'
+        '|               xxxxx|\n'
+        '|xxxxxx         x   x|\n'
+        '|     x         xxxxx|\n'
+        '|     x              |\n'
+        '----------------------'
+    )
+    base_canvas.draw_line(1, 2, 6, 2)
+    base_canvas.draw_line(6, 3, 6, 4)
+    base_canvas.draw_rectangle(16, 1, 20, 3)
+
+    base_canvas.bucket_fill(10, 3, colour='')
+    assert str(base_canvas) == expected_str
